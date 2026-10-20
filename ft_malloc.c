@@ -12,8 +12,12 @@ Quel rapport existe-t-il entre cette adresse et la taille demandée ?
 Et qu'est-ce qui peut provoquer une segfault lorsqu'on accède à de la mémoire virtuelle ?*/
 void *ft_malloc(size_t size)
 {
-    char *base_adress;
-    base_adress = mmap(NULL, PAGESIZE, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_ANONYMOUS, -1, 0);
+    void *base_adress;
+    base_adress = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS, -1, 0); // my mapping fails but why ? :)
+    if(base_adress == MAP_FAILED) {
+        perror("mmap");
+        return NULL;
+    }
     return base_adress;
 }
 //void free(void *ptr);
