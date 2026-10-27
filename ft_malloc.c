@@ -13,7 +13,7 @@ Et qu'est-ce qui peut provoquer une segfault lorsqu'on accède à de la mémoire
 void *ft_malloc(size_t size)
 {
     void *base_adress;
-    base_adress = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS, -1, 0); // my mapping fails but why ? :)
+    base_adress = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS, -1, 0); 
     if(base_adress == MAP_FAILED) {
         perror("mmap");
         return NULL;
@@ -32,5 +32,5 @@ int main (int argc, char **argv)
     strcpy(test_adress, "Hello\n\0");
     printf("My real malloc string is : %s", test_adress);
     strcpy(base_adress, "Hello\n\0");
-    printf("My string is : %s", base_adress);
+    printf("My first char is : %s", base_adress);
 }
