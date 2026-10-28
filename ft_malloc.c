@@ -49,6 +49,9 @@ void *ft_malloc(size_t size)
             level = verify_tiny(phonebook.tiny);
             if (level == NOEXIST){
                 phonebok.tiny = fetch_tiny();
+                block new_block = {16, false, NULL};
+                *phonebook.tiny = new_block;
+                phonebook.tiny += sizeof(block); // AND ALIGNEMENT ??? 
             }
             else if (level == FULL) {
                 write (2, "ft_malloc: Zone is exhausted !\n", 32);
